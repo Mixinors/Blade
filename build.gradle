@@ -1,0 +1,159 @@
+buildscript {
+    repositories {
+        maven {
+            name = "Minecraft Forge"
+            url = "https://files.minecraftforge.net/maven"
+        }
+
+        maven {
+            name = "Gigaherz"
+            url = "https://www.dogforce-games.com/maven/"
+        }
+
+        jcenter()
+
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "3.+", changing: true
+
+        classpath group: "org.jetbrains.kotlin", name: "kotlin-gradle-plugin", version: "1.4.0-rc"
+    }
+}
+
+apply plugin: "net.minecraftforge.gradle"
+apply plugin: "eclipse"
+apply plugin: "maven-publish"
+apply plugin: 'kotlin'
+
+archivesBaseName = project.mod_name + "-" + project.mod_version + "+" + project.mod_target + project.minecraft_version
+version = project.mod_version
+group = project.mod_group
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = "1.8"
+
+repositories {
+    maven {
+        name = "Kotlin for Forge"
+        url = "https://thedarkcolour.github.io/KotlinForForge/"
+    }
+
+    maven {
+        name = "Cloth"
+        url = "https://dl.bintray.com/shedaniel/cloth"
+    }
+}
+
+minecraft {
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    mappings channel: 'official', version: "${project.minecraft_version}"
+
+    runs {
+        client {
+            workingDirectory project.file("run")
+
+            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+
+            property "forge.logging.console.level", "debug"
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file("run")
+
+            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+
+            property "forge.logging.console.level", "debug"
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file("run")
+
+            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+
+            property "forge.logging.console.level", "debug"
+
+            args "--mod", "examplemod", "--all", "--output", file("src/generated/resources/")
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    // Minecraft
+    minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.minecraft_forge_version}"
+
+    // Kotlin for Forge
+    implementation group: "thedarkcolour", name: "kotlinforforge", version: "1.4.0"
+
+    // JetBrains Annotations
+    compile("org.jetbrains:annotations:19.0.0")
+
+    // AutoConfig
+    runtimeOnly(fg.deobf("me.shedaniel:autoconfig1u-forge:${project.auto_config_version}")) {
+        transitive = false
+    }
+
+    compileOnly("me.shedaniel:autoconfig1u-forge:${project.auto_config_version}") {
+        transitive = false
+    }
+
+    // Cloth Config
+    implementation ("me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}")
+
+    // Cloth Basic Math
+    implementation ("me.shedaniel.cloth:basic-math:${project.cloth_basic_math_version}")
+
+    // RoughlyEnoughItems
+    implementation ("me.shedaniel:RoughlyEnoughItems:${project.roughly_enough_items_version}")
+}
+jar {
+    manifest {
+        attributes([
+            "Specification-Title": "blade",
+            "Specification-Vendor": "vini2003.xyz"
+        ])
+    }
+}
+
+jar.finalizedBy("reobfJar")
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = '1.8'
+        languageVersion = '1.4'
+        apiVersion = '1.4'
+    }
+}

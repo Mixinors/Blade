@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[34,)"
+license="MIT"
+issueTrackerURL="https://github.com/vini2003/${project.mod_id}/issues/"
+
+[[mods]]
+modId="${project.mod_name}"
+version="${project.version}"
+displayName="${project.mod_name}"
+displayURL="https://github.com/vini2003/${project.mod_id}/"
+logoFile="${project.mod_id}.png"
+authors="vini2003"
+
+description='''
+A Kotlin-based, DSL-built GUI library for Minecraft.
+'''
+
+[[dependencies.blade]]
+    modId="forge"
+    mandatory=true
+    versionRange="[34,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.blade]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.3]"
+    ordering="NONE"
+    side="BOTH"
