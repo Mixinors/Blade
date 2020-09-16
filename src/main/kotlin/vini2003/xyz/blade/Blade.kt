@@ -12,8 +12,15 @@ import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.loading.FMLEnvironment
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import vini2003.xyz.blade.common.registry.NetworkRegistry
 
 @Mod("blade")
+class BladeMod {
+	init {
+		Blade.initialize()
+	}
+}
+
 object Blade {
 	@SuppressWarnings
 	const val MOD_ID = "blade"
@@ -31,12 +38,11 @@ object Blade {
 	}
 
 	init {
-		Resources.initialize()
+		NetworkRegistry.initialize()
 		Networks.initialize()
 
 		if (!FMLEnvironment.production) {
 			DebugContainers.initialize()
-			DebugCommands.initialize()
 
 			DistExecutor.safeRunWhenOn(Dist.CLIENT) {
 				DistExecutor.SafeRunnable {

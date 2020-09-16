@@ -2,11 +2,8 @@ package vini2003.xyz.blade.common.registry
 
 import com.google.common.collect.Lists
 import com.google.common.collect.Maps
-import com.google.common.collect.Multimaps
-import com.google.common.collect.Sets
 import io.netty.buffer.Unpooled
 import net.minecraft.client.Minecraft
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.ServerPlayerEntity
 import net.minecraft.network.IPacket
 import net.minecraft.network.PacketBuffer
@@ -24,6 +21,7 @@ import net.minecraftforge.fml.network.PacketDistributor
 import net.minecraftforge.fml.network.PacketDistributor.PacketTarget
 import org.apache.commons.lang3.tuple.Pair
 import vini2003.xyz.blade.Blade
+import vini2003.xyz.blade.Thing
 import java.util.function.BiConsumer
 import java.util.function.Consumer
 
@@ -37,8 +35,6 @@ object NetworkRegistry {
 
     private val clientToServer: MutableMap<ResourceLocation, BiConsumer<NetworkEvent.Context, PacketBuffer>> = Maps.newHashMap()
 
-    private val serverReceivables: MutableSet<ResourceLocation> = Sets.newHashSet()
-    private val clientReceivables = Multimaps.newMultimap(Maps.newHashMap<PlayerEntity, Collection<ResourceLocation>>()) { Sets.newHashSet() }
 
     fun initialize() {
         CHANNEL.addListener(
@@ -55,21 +51,7 @@ object NetworkRegistry {
     }
 
     private fun <T : NetworkEvent> createPacketHandler(clazz: Class<T>, map: Map<ResourceLocation, BiConsumer<NetworkEvent.Context, PacketBuffer>>): Consumer<T> {
-        return Consumer { event: T ->
-            if (event::class.java == clazz) {
-                val context = event.source.get()
-
-                if (!context.packetHandled) {
-                    val buffer = PacketBuffer(event.payload.copy())
-                    val type = buffer.readResourceLocation()
-                    val consumer = map[type]
-
-                    consumer?.accept(context, buffer)
-
-                    context.packetHandled = true
-                }
-            }
-        }
+        return Thing(clazz, map)
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -115,14 +97,6 @@ object NetworkRegistry {
         sendToClient(id, PacketDistributor.PLAYER.with { player }, buffer)
     }
 
-    fun canServerReceive(id: ResourceLocation): Boolean {
-        return serverReceivables.contains(id)
-    }
-
-    fun canPlayerReceive(player: ServerPlayerEntity?, id: ResourceLocation): Boolean {
-        return clientReceivables[player].contains(id)
-    }
-
     private fun sendSyncPacket(map: Map<ResourceLocation, BiConsumer<NetworkEvent.Context, PacketBuffer>>): PacketBuffer {
         val availableIds: List<ResourceLocation> = Lists.newArrayList(map.keys)
         val packetBuffer = PacketBuffer(Unpooled.buffer())
@@ -136,14 +110,16 @@ object NetworkRegistry {
         return packetBuffer
     }
 
-    private object Client {
-        @OnlyIn(Dist.CLIENT)
-        fun initClient() {
-            CHANNEL.addListener(
-                createPacketHandler(
-                    ServerCustomPayloadEvent::class.java, serverToClient
+    private class Client {
+        companion object {
+            @OnlyIn(Dist.CLIENT)
+            fun initClient() {
+                CHANNEL.addListener(
+                    createPacketHandler(
+                        ServerCustomPayloadEvent::class.java, serverToClient
+                    )
                 )
-            )
+            }
         }
     }
 }
