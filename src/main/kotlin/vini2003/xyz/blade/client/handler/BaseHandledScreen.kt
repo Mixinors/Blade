@@ -4,32 +4,29 @@ import com.github.vini2003.blade.client.utilities.Instances
 import com.github.vini2003.blade.common.handler.BaseContainer
 import com.github.vini2003.blade.common.utilities.Networks
 import com.github.vini2003.blade.common.utilities.Positions
-import net.minecraft.client.gui.screen.ingame.ContainerScreen
+import com.mojang.blaze3d.matrix.MatrixStack
+import net.minecraft.client.gui.fonts.Font
+import net.minecraft.client.gui.screen.inventory.ContainerScreen
 import net.minecraft.client.renderer.IRenderTypeBuffer
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.text.Text
+import net.minecraft.util.text.ITextComponent
 
-open class BaseContainerScreen<T : BaseContainer>(handler: BaseContainer, inventory: PlayerInventory, title: Text) : ContainerScreen<T>(handler as T, inventory, title) {
+open class BaseContainerScreen<T : BaseContainer>(val handler: BaseContainer, inventory: PlayerInventory, title: ITextComponent) : ContainerScreen<T>(handler as T, inventory, title) {
 	override fun init() {
 		handler.widgets.clear()
 		handler.slots.clear()
-		this.backgroundWidth = width
-		this.backgroundHeight = height
+		this.imageWidth = width
+		this.imageHeight = height
 		super.init()
 		handler.initialize(width, height)
 		handler.onLayoutChanged()
 		handler.allWidgets.forEach { 
 			it.onLayoutChanged()
 		}
-		Networks.toServer(Networks.INITIALIZE, Networks.ofInitialize(handler.syncId, width, height))
+		Networks.toServer(Networks.INITIALIZE, Networks.ofInitialize(handler.containerId, width, height))
 	}
 
-	override fun drawBackground(matrices: MatrixStack?, delta: Float, mouseX: Int, mouseY: Int) {
-
-	}
-
-	override fun isClickOutsideBounds(mouseX: Double, mouseY: Double, left: Int, top: Int, button: Int): Boolean {
+	override fun hasClickedOutside(mouseX: Double, mouseY: Double, left: Int, top: Int, button: Int): Boolean {
 		return handler.allWidgets.none { widget -> widget.isWithin(mouseX.toFloat(), mouseY.toFloat()) }
 	}
 
@@ -103,7 +100,7 @@ open class BaseContainerScreen<T : BaseContainer>(handler: BaseContainer, invent
 	override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {
 		super.renderBackground(matrices)
 
-		val provider: IRenderTypeBuffer.Immediate = Instances.client().bufferBuilders.effectVertexConsumers
+		val provider: IRenderTypeBuffer.Impl = Instances.client().renderBuffers().bufferSource()
 
 		handler.widgets.forEach {
 			it.drawWidget(matrices, provider)
@@ -111,14 +108,18 @@ open class BaseContainerScreen<T : BaseContainer>(handler: BaseContainer, invent
 
 		handler.allWidgets.forEach {
 			if (!it.hidden && it.focused) {
-				renderTooltip(matrices, it.getTooltip(), mouseX, mouseY)
+				renderComponentTooltip(matrices, it.getTooltip(), mouseX, mouseY)
 			}
 		}
 
-		provider.draw()
+		provider.endBatch()
 
 		super.render(matrices, mouseX, mouseY, delta)
 
-		super.drawMouseoverTooltip(matrices, mouseX, mouseY)
+		super.renderTooltip(matrices, mouseX, mouseY)
+	}
+
+	override fun renderBg(p_230450_1_: MatrixStack, p_230450_2_: Float, p_230450_3_: Int, p_230450_4_: Int) {
+		TODO("Not yet implemented")
 	}
 }

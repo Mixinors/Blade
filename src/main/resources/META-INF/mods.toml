@@ -1,14 +1,14 @@
-modLoader="javafml"
-loaderVersion="[34,)"
+modLoader="kotlinforforge"
+loaderVersion="[1,)"
 license="MIT"
-issueTrackerURL="https://github.com/vini2003/${project.mod_id}/issues/"
+issueTrackerURL="https://github.com/vini2003/Blade/issues/"
 
 [[mods]]
-modId="${project.mod_name}"
-version="${project.version}"
-displayName="${project.mod_name}"
-displayURL="https://github.com/vini2003/${project.mod_id}/"
-logoFile="${project.mod_id}.png"
+modId="blade"
+version="2.0.0"
+displayName="Blade"
+displayURL="https://github.com/vini2003/Blade/"
+logoFile="Blade.png"
 authors="vini2003"
 
 description='''

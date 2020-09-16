@@ -1,13 +1,13 @@
 package com.github.vini2003.blade.testing.kotlin
 
-import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry
+import net.minecraft.client.gui.ScreenManager
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.text.Text
+import net.minecraft.util.text.ITextComponent
 
 class DebugScreens {
 	companion object {
 		fun initialize() {
-			ScreenRegistry.register(DebugContainers.DEBUG_HANDLER) { handler: DebugContainer, inventory: PlayerInventory, title: Text -> DebugContainerScreen(handler, inventory, title) }
+			ScreenManager.register(DebugContainers.DEBUG_HANDLER) { handler: DebugContainer, inventory: PlayerInventory, title: ITextComponent -> DebugContainerScreen(handler, inventory, title) }
 		}
 	}
 }

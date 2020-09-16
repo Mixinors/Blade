@@ -5,7 +5,6 @@ import net.minecraft.entity.player.PlayerEntity
 
 class DebugContainer(syncId: Int, player: PlayerEntity) : BaseContainer(DebugContainers.DEBUG_HANDLER, syncId, player) {
 	override fun initialize(width: Int, height: Int) {
-
 		panel {
 			val panel = this
 
@@ -122,5 +121,5 @@ class DebugContainer(syncId: Int, player: PlayerEntity) : BaseContainer(DebugCon
 		}
 	}
 
-	override fun canUse(player: PlayerEntity?): Boolean = true
+	override fun stillValid(player: PlayerEntity?): Boolean = true
 }

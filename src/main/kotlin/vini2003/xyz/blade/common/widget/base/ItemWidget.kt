@@ -19,6 +19,6 @@ open class ItemWidget(var stack: ItemStack = ItemStack.EMPTY) : AbstractWidget()
 	override fun drawWidget(matrices: MatrixStack, provider: IRenderTypeBuffer) {
 		if (hidden) return
 
-		Drawings.getItemRenderer().renderInGui(stack, position.x.toInt(), position.y.toInt())
+		Drawings.getItemRenderer()!!.renderGuiItem(stack, position.x.toInt(), position.y.toInt())
 	}
 }

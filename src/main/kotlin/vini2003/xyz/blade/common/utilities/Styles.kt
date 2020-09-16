@@ -4,7 +4,7 @@ import com.github.vini2003.blade.common.miscellaneous.Style
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import net.minecraft.resource.ResourceManager
+import net.minecraft.resources.IResourceManager
 import java.nio.charset.Charset
 
 class Styles {
@@ -17,8 +17,8 @@ class Styles {
 			return entries.getOrDefault(name, Style.EMPTY)
 		}
 
-		fun load(manager: ResourceManager) {
-			manager.findResources("style") { string -> string.endsWith(".style.json") }.forEach {
+		fun load(manager: IResourceManager) {
+			manager.listResources("style") { string -> string.endsWith(".style.json") }.forEach {
 				try {
 					val stream = manager.getResource(it).inputStream
 

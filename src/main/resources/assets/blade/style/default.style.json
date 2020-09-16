@@ -1,0 +1,33 @@
+{
+  "templates": {
+  },
+  "entries": {
+    "tooltip.background_start": "0xf0140617",
+    "tooltip.background_end": "0xf0120412",
+    "tooltip.outline_start": "0x50270460",
+    "tooltip.outline_end": "0x50190333",
+    "tooltip.shadow_start": "0xf0140617",
+    "tooltip.shadow_end": "0xf0120418",
+
+
+    "button.label": "0xfffcfcfc",
+
+
+    "slot.top_left": "0xff373737",
+    "slot.background": "0xff8b8b8b",
+
+
+    "slot_list.top_left": "0xff373737",
+    "slot_list.background": "0xff8b8b8b",
+    "slot_list.bottom_right": "0xffffffff",
+
+    "slot_list.scroller.unfocused.top_left": "0xffffffff",
+    "slot_list.scroller.unfocused.background": "0xff949494",
+    "slot_list.scroller.unfocused.bottom_right": "0xff373737",
+
+    "slot_list.scroller.focused.top_left": "0xffffffff",
+    "slot_list.scroller.focused.background": "0xff626262",
+    "slot_list.scroller.focused.bottom_right": "0xff373737"
+  }
+}
+

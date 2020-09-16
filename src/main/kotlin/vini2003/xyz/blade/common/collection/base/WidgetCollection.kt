@@ -7,13 +7,14 @@ import com.github.vini2003.blade.common.miscellaneous.PositionHolder
 import com.github.vini2003.blade.common.miscellaneous.Size
 import com.github.vini2003.blade.common.utilities.Slots
 import com.github.vini2003.blade.common.widget.base.*
+import net.minecraft.inventory.IInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.text.LiteralText
-import net.minecraft.text.Text
-import net.minecraft.text.TranslatableText
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.text.ITextComponent
+import net.minecraft.util.text.StringTextComponent
+import net.minecraft.util.text.TranslationTextComponent
 
 interface WidgetCollection {
 	val widgets: MutableList<AbstractWidget>
@@ -157,12 +158,12 @@ interface WidgetCollection {
 		this.clickAction = clickAction
 	}
 
-	fun ButtonWidget.label(label: Text) {
+	fun ButtonWidget.label(label: ITextComponent) {
 		this.label = label
 	}
 
 	fun ButtonWidget.label(label: String) {
-		this.label = LiteralText(label)
+		this.label = StringTextComponent(label)
 	}
 
 	fun ButtonWidget.disabled(block: () -> Boolean) {
@@ -301,7 +302,7 @@ interface WidgetCollection {
 		return { addTab(stack) }
 	}
 
-	fun TabWidget.tab(stack: ItemStack, tooltipBlock: () -> List<Text>): TabWidgetCollection.() -> Unit {
+	fun TabWidget.tab(stack: ItemStack, tooltipBlock: () -> List<ITextComponent>): TabWidgetCollection.() -> Unit {
 		return { addTab(stack, tooltipBlock) }
 	}
 
@@ -333,7 +334,7 @@ interface WidgetCollection {
 		this.panelTexture = panelTexture
 	}
 
-	fun text(text: Text, block: TextWidget.() -> Unit) {
+	fun text(text: ITextComponent, block: TextWidget.() -> Unit) {
 		val widget = TextWidget(text)
 		addWidget(widget)
 		widget.apply(block)
@@ -347,23 +348,23 @@ interface WidgetCollection {
 		this.shadow = shadow
 	}
 
-	fun String.literal(): LiteralText {
-		return LiteralText(this)
+	fun String.literal(): ITextComponent {
+		return StringTextComponent(this)
 	}
 
-	fun String.translatable(): TranslatableText {
-		return TranslatableText(this)
+	fun String.translatable(): ITextComponent {
+		return TranslationTextComponent(this)
 	}
 
-	fun playerInventory(position: PositionHolder, size: Size, inventory: Inventory) {
+	fun playerInventory(position: PositionHolder, size: Size, inventory: IInventory) {
 		Slots.addPlayerInventory(position, size, this, inventory)
 	}
 
-	fun playerInventory(panel: AbstractWidget, inventory: Inventory) {
+	fun playerInventory(panel: AbstractWidget, inventory: IInventory) {
 		playerInventory(Position.of(java.lang.Float.max(panel.x + 8F, panel.x + 8F + (panel.width / 2F - (9 * 18F - 4F))), panel.y + panel.height - 83F), Size.of(18, 18), inventory)
 	}
 
-	fun slotArray(position: PositionHolder, size: Size, slotNumber: Int, arrayWidth: Int, arrayHeight: Int, inventory: Inventory) {
+	fun slotArray(position: PositionHolder, size: Size, slotNumber: Int, arrayWidth: Int, arrayHeight: Int, inventory: IInventory) {
 		Slots.addArray(position, size, this, slotNumber, arrayWidth, arrayHeight, inventory)
 	}
 }

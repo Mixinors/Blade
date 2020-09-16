@@ -1,28 +1,26 @@
 package com.github.vini2003.blade.common.widget.base
 
-import com.github.vini2003.blade.Blade
 import com.github.vini2003.blade.client.data.PartitionedTexture
 import com.github.vini2003.blade.client.utilities.Instances
 import com.github.vini2003.blade.common.handler.BaseContainer
 import com.github.vini2003.blade.common.collection.base.HandledWidgetCollection
 import com.github.vini2003.blade.common.collection.base.WidgetCollection
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
-import net.minecraft.client.gui.screen.ingame.ContainerScreen
+import com.mojang.blaze3d.matrix.MatrixStack
+import net.minecraft.client.gui.screen.inventory.ContainerScreen
 import net.minecraft.client.renderer.IRenderTypeBuffer
-import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.inventory.Inventory
+import net.minecraft.inventory.IInventory
 import net.minecraft.inventory.container.Slot
-import net.minecraft.screen.slot.Slot
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.api.distmarker.OnlyIn
 import vini2003.xyz.blade.Blade
 import kotlin.properties.Delegates
 
 open class SlotWidget(
 	var slot: Int,
-	var inventory: Inventory,
-	var slotProvider: (Inventory, Int, Int, Int) -> Slot
+	var inventory: IInventory,
+	var slotProvider: (IInventory, Int, Int, Int) -> Slot
 ) : AbstractWidget() {
-	constructor(slot: Int, inventory: Inventory) : this(slot, inventory, { inv, id, x, y -> Slot(inv, id, x, y) })
+	constructor(slot: Int, inventory: IInventory) : this(slot, inventory, { inv, id, x, y -> Slot(inv, id, x, y) })
 	
 	var backendSlot: Slot? = null
 
@@ -48,10 +46,10 @@ open class SlotWidget(
 
 	@OnlyIn(Dist.CLIENT)
 	fun updateSlotPositionDelegate() {
-		val screen = Instances.client().currentScreen as? ContainerScreen<*> ?: return
+		val screen = Instances.client().screen as? ContainerScreen<*> ?: return
 
-		backendSlot?.x = backendSlot?.x?.minus(screen.x)
-		backendSlot?.y = backendSlot?.y?.minus(screen.y)
+		backendSlot?.x = backendSlot?.x?.minus(screen.guiLeft)
+		backendSlot?.y = backendSlot?.y?.minus(screen.guiTop)
 	}
 
 	private val slotX: Int

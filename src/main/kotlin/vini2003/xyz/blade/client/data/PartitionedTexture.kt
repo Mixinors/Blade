@@ -3,8 +3,8 @@ package com.github.vini2003.blade.client.data
 import com.github.vini2003.blade.client.utilities.Drawings
 import com.github.vini2003.blade.client.utilities.Layers
 import com.github.vini2003.blade.common.miscellaneous.Color
+import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.renderer.IRenderTypeBuffer
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.ResourceLocation
 
 class PartitionedTexture(

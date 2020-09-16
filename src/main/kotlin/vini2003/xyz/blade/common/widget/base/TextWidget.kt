@@ -1,11 +1,11 @@
 package com.github.vini2003.blade.common.widget.base
 
 import com.github.vini2003.blade.client.utilities.Drawings
+import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.renderer.IRenderTypeBuffer
-import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.text.Text
+import net.minecraft.util.text.ITextComponent
 
-open class TextWidget(var text: Text? = null) : AbstractWidget() {
+open class TextWidget(var text: ITextComponent? = null) : AbstractWidget() {
 	var shadow = false
 	var color = 4210752
 
@@ -16,7 +16,7 @@ open class TextWidget(var text: Text? = null) : AbstractWidget() {
 
 		text?.also {
 			if (shadow) {
-				Drawings.getTextRenderer()?.drawWithShadow(matrices, text, position.x, position.y, color)
+				Drawings.getTextRenderer()?.drawShadow(matrices, text, position.x, position.y, color)
 			} else {
 				Drawings.getTextRenderer()?.draw(matrices, text, position.x, position.y, color)
 			}

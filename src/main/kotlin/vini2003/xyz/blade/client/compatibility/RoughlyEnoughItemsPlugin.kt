@@ -1,4 +1,4 @@
-//package com.github.vini2003.blade.client.compatibility
+package com.github.vini2003.blade.client.compatibility
 //
 //import com.github.vini2003.blade.Blade
 //import com.github.vini2003.blade.client.handler.BaseContainerScreen

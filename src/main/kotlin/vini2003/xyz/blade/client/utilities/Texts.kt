@@ -1,17 +1,17 @@
 package com.github.vini2003.blade.client.utilities
 
-import net.minecraft.text.Text
+import net.minecraft.util.text.ITextComponent
 
 class Texts {
 	companion object {
 		@JvmStatic
-		fun width(text: Text): Int {
-			return Instances.client().textRenderer.getWidth(text)
+		fun width(text: ITextComponent): Int {
+			return Instances.client().font.width(text)
 		}
 
 		@JvmStatic
 		fun height(): Int {
-			return Instances.client().textRenderer.fontHeight
+			return Instances.client().font.lineHeight
 		}
 	}
 }

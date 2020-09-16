@@ -1,6 +1,5 @@
 package com.github.vini2003.blade.common.widget.base
 
-import com.github.vini2003.blade.Blade
 import com.github.vini2003.blade.client.data.PartitionedTexture
 import com.github.vini2003.blade.common.miscellaneous.Position
 import com.github.vini2003.blade.common.miscellaneous.Size
@@ -9,10 +8,9 @@ import com.github.vini2003.blade.common.utilities.Networks
 import com.github.vini2003.blade.common.utilities.Positions
 import com.github.vini2003.blade.common.collection.base.HandledWidgetCollection
 import com.github.vini2003.blade.common.collection.base.WidgetCollection
+import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.renderer.IRenderTypeBuffer
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.inventory.Inventory
-import net.minecraft.inventory.SimpleInventory
 import vini2003.xyz.blade.Blade
 import kotlin.math.max
 import kotlin.math.min
@@ -185,8 +183,8 @@ open class SlotListWidget(
 
 					val slot = it.backendSlot!!
 
-					if (slot.slotIndex - widthInSlots >= 0) {
-						slot.slotIndex = slot.slotIndex - widthInSlots
+					if (slot.slot - widthInSlots >= 0) {
+						slot.slot = slot.slot - widthInSlots
 					}
 				}
 			}
@@ -199,8 +197,8 @@ open class SlotListWidget(
 
 					val slot = it.backendSlot!!
 
-					if (slot.slotIndex + widthInSlots <= inventory.containerSize) {
-						slot.slotIndex = slot.slotIndex + widthInSlots
+					if (slot.slot + widthInSlots <= inventory.containerSize) {
+						slot.slot = slot.slot + widthInSlots
 					}
 				}
 			}

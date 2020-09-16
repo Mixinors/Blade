@@ -1,12 +1,12 @@
 package com.github.vini2003.blade.common.widget.base
 
-import com.github.vini2003.blade.Blade
 import com.github.vini2003.blade.client.data.PartitionedTexture
 import com.github.vini2003.blade.client.utilities.Instances
 import com.github.vini2003.blade.client.utilities.Scissors
+import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.renderer.IRenderTypeBuffer
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.ResourceLocation
+import vini2003.xyz.blade.Blade
 
 open class VerticalBarWidget(var maximum: () -> Float = {100F}, var current: () -> Float = {0F}, foregroundId: ResourceLocation = Blade.resourceLocation("textures/widget/bar_foreground.png"), backgroundId: ResourceLocation = Blade.resourceLocation("textures/widget/bar_background.png")) : AbstractWidget() {
 	var foregroundTexture = PartitionedTexture(foregroundId, 18F, 18F, 0.05555555555555555556F, 0.05555555555555555556F, 0.05555555555555555556F, 0.05555555555555555556F)
@@ -16,7 +16,7 @@ open class VerticalBarWidget(var maximum: () -> Float = {100F}, var current: () 
 		if (hidden) return
 
 		val rawHeight = Instances.client().window.height.toFloat()
-		val scale = Instances.client().window.scaleFactor.toFloat()
+		val scale = Instances.client().window.guiScale.toFloat()
 
 		val sBGY: Float = height / maximum() * current()
 

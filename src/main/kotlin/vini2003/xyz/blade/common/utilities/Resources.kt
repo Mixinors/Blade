@@ -1,27 +1,31 @@
 package com.github.vini2003.blade.common.utilities
 
-import com.github.vini2003.blade.Blade
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener
-import net.minecraft.resource.ResourceManager
-import net.minecraft.resource.ResourceType
+import net.minecraft.profiler.IProfiler
+
+import net.minecraft.resources.IFutureReloadListener
+import net.minecraft.resources.IResourceManager
 import net.minecraft.util.ResourceLocation
+import net.minecraftforge.event.AddReloadListenerEvent
+import net.minecraftforge.eventbus.api.SubscribeEvent
+import net.minecraftforge.resource.ISelectiveResourceReloadListener
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.Executor
 
 class Resources {
 	companion object {
-		fun initialize() {
-			ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(object : SimpleSynchronousResourceReloadListener {
-				private val id: ResourceLocation = Blade.resourceLocation("reload_listener")
-
-				override fun apply(manager: ResourceManager?) {
+		@JvmStatic
+		@SubscribeEvent
+		fun reload(event: AddReloadListenerEvent) {
+			event.addListener { _, manager, _, _, _, _ ->
+				CompletableFuture.runAsync {
 					Styles.clear()
-					Styles.load(manager!!)
-				}
+						Styles.load(manager)
+					}
+			}
+		}
 
-				override fun getFabricId(): ResourceLocation {
-					return id
-				}
-			})
+		@JvmStatic
+		fun initialize() {
 		}
 	}
 }

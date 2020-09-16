@@ -46,7 +46,7 @@ class Stacks {
 
 		@JvmStatic
 		fun equal(stackA: ItemStack, stackB: ItemStack): Boolean {
-			return ItemStack.areEqual(stackA, stackB)
+			return ItemStack.isSame(stackA, stackB)
 		}
 	}
 }

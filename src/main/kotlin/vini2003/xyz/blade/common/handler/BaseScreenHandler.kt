@@ -61,7 +61,7 @@ abstract class BaseContainer(type: ContainerType<out Container>, syncId: Int, va
 	
 	@OnlyIn(Dist.CLIENT)
 	fun onLayoutChangedDelegate() {
-		val screen = Instances.client().currentScreen as? ContainerScreen<*> ?: return
+		val screen = Instances.client().screen as? ContainerScreen<*> ?: return
 
 		screen.leftPos = rectangle.minX
 		screen.topPos = rectangle.minY

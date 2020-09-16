@@ -55,7 +55,7 @@ open class ButtonWidget(var clickAction: () -> Unit = {}) : AbstractWidget() {
 		if (provider is IRenderTypeBuffer.Impl) provider.endBatch()
 
 		label?.also {
-			Drawings.getTextRenderer()?.drawWithShadow(matrices, label, position.x + (size.width / 2 - Texts.width(label!!) / 2), position.y + (size.height / 2 - Texts.height() / 2), color("button.label").toInt()) // 0xFCFCFC
+			Drawings.getTextRenderer()?.drawShadow(matrices, label, position.x + (size.width / 2 - Texts.width(label!!) / 2), position.y + (size.height / 2 - Texts.height() / 2), color("button.label").toInt()) // 0xFCFCFC
 		}
 	}
 }

@@ -1,6 +1,5 @@
 package com.github.vini2003.blade.common.widget.base
 
-import com.github.vini2003.blade.Blade
 import com.github.vini2003.blade.client.data.PartitionedTexture
 import com.github.vini2003.blade.client.utilities.Drawings
 import com.github.vini2003.blade.client.utilities.Layers
@@ -11,18 +10,19 @@ import com.github.vini2003.blade.common.utilities.Networks
 import com.github.vini2003.blade.common.utilities.Positions
 import com.github.vini2003.blade.common.collection.base.HandledWidgetCollection
 import com.github.vini2003.blade.common.collection.base.WidgetCollection
+import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.renderer.IRenderTypeBuffer
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.text.Text
+import net.minecraft.util.text.ITextComponent
+import vini2003.xyz.blade.Blade
 
 
 open class TabWidget : AbstractWidget(), WidgetCollection {
 	private val tabRectangles: MutableList<Rectangle> = mutableListOf()
 	private val tabCollections: MutableList<TabWidgetCollection> = mutableListOf()
 	private val tabSymbols: MutableList<ItemStack> = mutableListOf()
-	private val tabTooltips: MutableList<() -> List<Text>> = mutableListOf()
+	private val tabTooltips: MutableList<() -> List<ITextComponent>> = mutableListOf()
 	override val widgets : MutableList<AbstractWidget> = mutableListOf()
 
 	var selected: Int = 0
@@ -76,11 +76,11 @@ open class TabWidget : AbstractWidget(), WidgetCollection {
 		}
 	}
 
-	fun addTab(symbol: Item, tooltip: () -> List<Text>): WidgetCollection {
+	fun addTab(symbol: Item, tooltip: () -> List<ITextComponent>): WidgetCollection {
 		return addTab(ItemStack(symbol), tooltip)
 	}
 
-	fun addTab(symbol: ItemStack, tooltip: () -> List<Text>): WidgetCollection {
+	fun addTab(symbol: ItemStack, tooltip: () -> List<ITextComponent>): WidgetCollection {
 		val collection = TabWidgetCollection(tabCollections.size)
 		collection.handled = handled
 		collection.parent = this
@@ -103,7 +103,7 @@ open class TabWidget : AbstractWidget(), WidgetCollection {
 		return collection
 	}
 
-	override fun getTooltip(): List<Text> {
+	override fun getTooltip(): List<ITextComponent> {
 		tabRectangles.forEachIndexed { index, rectangle ->
 			if (rectangle.isWithin(Positions.mouseX, Positions.mouseY)) {
 				if (tabTooltips.size >= index) {
@@ -136,7 +136,7 @@ open class TabWidget : AbstractWidget(), WidgetCollection {
 	override fun drawWidget(matrices: MatrixStack, provider: IRenderTypeBuffer) {
 		panelTexture.draw(matrices, provider, position.x, position.y + 25F, size.width, size.height - 25F)
 
-		if (provider is IRenderTypeBuffer.Immediate) provider.draw()
+		if (provider is IRenderTypeBuffer.Impl) provider.endBatch()
 
 		tabRectangles.forEachIndexed { index, rectangle ->
 			if (selected == index) {
@@ -153,7 +153,7 @@ open class TabWidget : AbstractWidget(), WidgetCollection {
 				}
 			}
 
-			Drawings.getItemRenderer()?.renderGuiItemIcon(tabSymbols[index], (position.x + (26F * index) + 4.5F).toInt(), position.y.toInt() + 7)
+			Drawings.getItemRenderer()?.renderGuiItem(tabSymbols[index], (position.x + (26F * index) + 4.5F).toInt(), position.y.toInt() + 7)
 		}
 
 		widgets.forEach {

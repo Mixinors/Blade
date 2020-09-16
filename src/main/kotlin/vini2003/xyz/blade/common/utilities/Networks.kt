@@ -1,12 +1,11 @@
 package com.github.vini2003.blade.common.utilities
 
-import com.github.vini2003.blade.Blade
 import com.github.vini2003.blade.common.handler.BaseContainer
 import io.netty.buffer.Unpooled
-import net.fabricmc.fabric.api.network.ClientSidePacketRegistry
-import net.fabricmc.fabric.api.network.ServerSidePacketRegistry
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.ResourceLocation
+import vini2003.xyz.blade.Blade
+import vini2003.xyz.blade.common.registry.NetworkRegistry
 
 class Networks {
 	companion object {
@@ -47,32 +46,32 @@ class Networks {
 		val FOCUS_RELEASE = Blade.resourceLocation("focus_release")
 
 		init {
-			ServerSidePacketRegistry.INSTANCE.register(WIDGET_UPDATE) { context, buf ->
+			NetworkRegistry.registerC2SHandler(WIDGET_UPDATE) { context, buf ->
 				val syncId = buf.readInt()
 				val id = buf.readResourceLocation()
 				
 				buf.retain()
 
-				context.taskQueue.execute {
-					context.player.server!!.playerManager.playerList.forEach {
-						if (it.currentContainer.syncId == syncId && it.currentContainer is BaseContainer) {
-							(it.currentContainer as BaseContainer).handlePacket(id, PacketBuffer(buf.copy()))
+				context.enqueueWork {
+					context.sender!!.server!!.playerList.players.forEach {
+						if (it.containerMenu.containerId == syncId && it.containerMenu is BaseContainer) {
+							(it.containerMenu as BaseContainer).handlePacket(id, PacketBuffer(buf.copy()))
 						}
 					}
 				}
 			}
 
-			ServerSidePacketRegistry.INSTANCE.register(INITIALIZE) { context, buf ->
+			NetworkRegistry.registerC2SHandler(INITIALIZE) { context, buf ->
 				val syncId = buf.readInt()
 				val width = buf.readInt()
 				val height = buf.readInt()
 
 				buf.retain()
 
-				context.taskQueue.execute {
-					context.player.server!!.playerManager.playerList.forEach { it ->
-						if (it.currentContainer.syncId == syncId && it.currentContainer is BaseContainer) {
-							(it.currentContainer as BaseContainer).also {
+				context.enqueueWork {
+					context.sender!!.server!!.playerList.players.forEach { it ->
+						if (it.containerMenu.containerId == syncId && it.containerMenu is BaseContainer) {
+							(it.containerMenu as BaseContainer).also {
 								it.slots.clear()
 								it.widgets.clear()
 								it.initialize(width, height)
@@ -89,7 +88,7 @@ class Networks {
 
 		@JvmStatic
 		fun toServer(id: ResourceLocation, buf: PacketBuffer) {
-			ClientSidePacketRegistry.INSTANCE.sendToServer(id, buf)
+			NetworkRegistry.sendToServer(id, buf)
 		}
 
 		@JvmStatic

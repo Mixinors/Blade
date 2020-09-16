@@ -1,9 +1,9 @@
 package com.github.vini2003.blade.client.utilities
 
 import com.github.vini2003.blade.common.widget.base.AbstractWidget
-import net.minecraft.client.MinecraftClient
+import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.IRenderTypeBuffer
-import net.minecraft.client.renderer.IRenderTypeBuffer.Immediate
+import net.minecraft.client.renderer.IRenderTypeBuffer.Impl
 import org.lwjgl.opengl.GL11
 
 class Scissors(provider: IRenderTypeBuffer?, x: Int, y: Int, width: Int, height: Int) {
@@ -13,10 +13,10 @@ class Scissors(provider: IRenderTypeBuffer?, x: Int, y: Int, width: Int, height:
 	private var top = 0
 	private var bottom = 0
 
-	constructor(provider: IRenderTypeBuffer?, element: AbstractWidget) : this(provider, (element.position.x * MinecraftClient.getInstance().window.scaleFactor).toInt(),
-			(MinecraftClient.getInstance().window.height - (element.position.y + element.size.height) * MinecraftClient.getInstance().window.scaleFactor).toInt(),
-			(element.size.width * MinecraftClient.getInstance().window.scaleFactor).toInt(),
-			(element.size.height * MinecraftClient.getInstance().window.scaleFactor).toInt())
+	constructor(provider: IRenderTypeBuffer?, element: AbstractWidget) : this(provider, (element.position.x * Minecraft.getInstance().window.guiScale).toInt(),
+			(Minecraft.getInstance().window.height - (element.position.y + element.size.height) * Minecraft.getInstance().window.guiScale).toInt(),
+			(element.size.width * Minecraft.getInstance().window.guiScale).toInt(),
+			(element.size.height * Minecraft.getInstance().window.guiScale).toInt())
 
 	private fun resume() {
 		GL11.glEnable(GL11.GL_SCISSOR_TEST)
@@ -24,8 +24,8 @@ class Scissors(provider: IRenderTypeBuffer?, x: Int, y: Int, width: Int, height:
 	}
 
 	fun destroy(provider: IRenderTypeBuffer?) {
-		if (provider is Immediate) {
-			provider.draw()
+		if (provider is Impl) {
+			provider.endBatch()
 		}
 		GL11.glDisable(GL11.GL_SCISSOR_TEST)
 		objects[index] = null
@@ -47,8 +47,8 @@ class Scissors(provider: IRenderTypeBuffer?, x: Int, y: Int, width: Int, height:
 	}
 
 	init {
-		if (provider is Immediate) {
-			provider.draw()
+		if (provider is Impl) {
+			provider.endBatch()
 		}
 		lastObject++
 		if (lastObject < max) {
