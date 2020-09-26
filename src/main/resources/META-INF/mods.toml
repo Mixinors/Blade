@@ -1,5 +1,5 @@
-modLoader="javafml"
-loaderVersion="[1,)"
+modLoader="kotlinforforge"
+loaderVersion="[1.4,)"
 license="MIT"
 issueTrackerURL="https://github.com/vini2003/Blade/issues/"
 
@@ -28,3 +28,7 @@ A Kotlin-based, DSL-built GUI library for Minecraft.
     versionRange="[1.16.3]"
     ordering="NONE"
     side="BOTH"
+
+# Note: do not add dependency on 'kotlinforforge' because it won't get loaded as a mod
+# This is stupid design but it's what we have
+

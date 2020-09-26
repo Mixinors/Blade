@@ -14,13 +14,7 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import vini2003.xyz.blade.common.registry.NetworkRegistry
 
-@Mod("blade")
-class BladeMod {
-	init {
-		Blade.initialize()
-	}
-}
-
+@Mod(Blade.MOD_ID)
 object Blade {
 	@SuppressWarnings
 	const val MOD_ID = "blade"
@@ -33,11 +27,9 @@ object Blade {
 		return ResourceLocation(MOD_ID, string)
 	}
 
-	fun initialize() {
-
-	}
-
 	init {
+		LOGGER.info("Blade is currently being loaded") // Added as a debug feature, just in case Kotlin for Forge decides to fuck up again
+
 		NetworkRegistry.initialize()
 		Networks.initialize()
 
