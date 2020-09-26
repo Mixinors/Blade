@@ -1,8 +1,6 @@
-package com.github.vini2003.blade.client.utilities
+package vini2003.xyz.blade.client.utilities
 
-import net.minecraft.client.renderer.RenderState
 import net.minecraft.client.renderer.RenderType
-import net.minecraft.client.renderer.texture.Texture
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraft.client.renderer.vertex.VertexFormat
 import net.minecraft.util.ResourceLocation

@@ -1,4 +1,4 @@
-package com.github.vini2003.blade.common.miscellaneous
+package vini2003.xyz.blade.common.miscellaneous
 
 import com.google.gson.JsonElement
 import java.util.function.Function

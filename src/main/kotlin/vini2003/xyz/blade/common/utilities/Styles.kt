@@ -1,6 +1,6 @@
-package com.github.vini2003.blade.common.utilities
+package vini2003.xyz.blade.common.utilities
 
-import com.github.vini2003.blade.common.miscellaneous.Style
+import vini2003.xyz.blade.common.miscellaneous.Style
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
@@ -49,7 +49,7 @@ class Styles {
 				mapped[it.key] = if (it.key.startsWith("$")) (templates[it.key.replace("$", "")]).asJsonPrimitive as JsonElement else it.value
 			}
 
-			Styles.entries[name] = Style(mapped)
+			Companion.entries[name] = Style(mapped)
 		}
 
 		fun clear() {

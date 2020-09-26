@@ -1,4 +1,4 @@
-package com.github.vini2003.blade.client.utilities
+package vini2003.xyz.blade.client.utilities
 
 import net.minecraft.util.text.ITextComponent
 

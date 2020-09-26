@@ -1,11 +1,10 @@
-package com.github.vini2003.blade.client.handler
+package vini2003.xyz.blade.client.handler
 
-import com.github.vini2003.blade.client.utilities.Instances
-import com.github.vini2003.blade.common.handler.BaseContainer
-import com.github.vini2003.blade.common.utilities.Networks
-import com.github.vini2003.blade.common.utilities.Positions
+import vini2003.xyz.blade.client.utilities.Instances
+import vini2003.xyz.blade.common.handler.BaseContainer
+import vini2003.xyz.blade.common.utilities.Networks
+import vini2003.xyz.blade.common.utilities.Positions
 import com.mojang.blaze3d.matrix.MatrixStack
-import net.minecraft.client.gui.fonts.Font
 import net.minecraft.client.gui.screen.inventory.ContainerScreen
 import net.minecraft.client.renderer.IRenderTypeBuffer
 import net.minecraft.entity.player.PlayerInventory
@@ -20,7 +19,7 @@ open class BaseContainerScreen<T : BaseContainer>(val handler: BaseContainer, in
 		super.init()
 		handler.initialize(width, height)
 		handler.onLayoutChanged()
-		handler.allWidgets.forEach { 
+		handler.allWidgets.forEach {
 			it.onLayoutChanged()
 		}
 		Networks.toServer(Networks.INITIALIZE, Networks.ofInitialize(handler.containerId, width, height))

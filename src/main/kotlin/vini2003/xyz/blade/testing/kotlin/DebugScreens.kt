@@ -1,4 +1,4 @@
-package com.github.vini2003.blade.testing.kotlin
+package vini2003.xyz.blade.testing.kotlin
 
 import net.minecraft.client.gui.ScreenManager
 import net.minecraft.entity.player.PlayerInventory

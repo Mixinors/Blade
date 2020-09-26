@@ -1,12 +1,12 @@
-package com.github.vini2003.blade.common.collection.base
+package vini2003.xyz.blade.common.collection.base
 
-import com.github.vini2003.blade.client.data.PartitionedTexture
-import com.github.vini2003.blade.common.collection.TabWidgetCollection
-import com.github.vini2003.blade.common.miscellaneous.Position
-import com.github.vini2003.blade.common.miscellaneous.PositionHolder
-import com.github.vini2003.blade.common.miscellaneous.Size
-import com.github.vini2003.blade.common.utilities.Slots
-import com.github.vini2003.blade.common.widget.base.*
+import vini2003.xyz.blade.client.data.PartitionedTexture
+import vini2003.xyz.blade.common.collection.TabWidgetCollection
+import vini2003.xyz.blade.common.miscellaneous.Position
+import vini2003.xyz.blade.common.miscellaneous.PositionHolder
+import vini2003.xyz.blade.common.miscellaneous.Size
+import vini2003.xyz.blade.common.utilities.Slots
+import vini2003.xyz.blade.common.widget.base.*
 import net.minecraft.inventory.IInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.Item

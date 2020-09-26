@@ -1,5 +1,4 @@
-package com.github.vini2003.blade.common.miscellaneous
-
+package vini2003.xyz.blade.common.miscellaneous
 
 data class Color(val r: Float, val g: Float, val b: Float, val a: Float) {
 	companion object {

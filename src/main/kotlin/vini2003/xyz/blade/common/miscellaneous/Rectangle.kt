@@ -1,4 +1,4 @@
-package com.github.vini2003.blade.common.miscellaneous
+package vini2003.xyz.blade.common.miscellaneous
 
 class Rectangle(val position: PositionHolder, val size: SizeHolder) {
 	companion object {

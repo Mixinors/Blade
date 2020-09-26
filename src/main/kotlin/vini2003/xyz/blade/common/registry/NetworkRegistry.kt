@@ -25,7 +25,6 @@ import vini2003.xyz.blade.Thing
 import java.util.function.BiConsumer
 import java.util.function.Consumer
 
-
 object NetworkRegistry {
     private val CHANNEL_ID = Blade.resourceLocation("blade")
 

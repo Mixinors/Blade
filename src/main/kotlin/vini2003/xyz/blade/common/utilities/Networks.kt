@@ -1,11 +1,11 @@
-package com.github.vini2003.blade.common.utilities
+package vini2003.xyz.blade.common.utilities
 
-import com.github.vini2003.blade.common.handler.BaseContainer
+import vini2003.xyz.blade.common.handler.BaseContainer
+import vini2003.xyz.blade.Blade
+import vini2003.xyz.blade.common.registry.NetworkRegistry
 import io.netty.buffer.Unpooled
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.ResourceLocation
-import vini2003.xyz.blade.Blade
-import vini2003.xyz.blade.common.registry.NetworkRegistry
 
 class Networks {
 	companion object {
@@ -49,7 +49,7 @@ class Networks {
 			NetworkRegistry.registerC2SHandler(WIDGET_UPDATE) { context, buf ->
 				val syncId = buf.readInt()
 				val id = buf.readResourceLocation()
-				
+
 				buf.retain()
 
 				context.enqueueWork {

@@ -1,4 +1,4 @@
-package com.github.vini2003.blade.common.utilities
+package vini2003.xyz.blade.common.utilities
 
 class Positions {
 	companion object {

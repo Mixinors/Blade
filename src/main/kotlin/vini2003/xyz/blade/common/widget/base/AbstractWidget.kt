@@ -1,12 +1,12 @@
-package com.github.vini2003.blade.common.widget.base
+package vini2003.xyz.blade.common.widget.base
 
-import com.github.vini2003.blade.common.miscellaneous.*
-import com.github.vini2003.blade.common.handler.BaseContainer
-import com.github.vini2003.blade.common.utilities.Networks
-import com.github.vini2003.blade.common.utilities.Positions
-import com.github.vini2003.blade.common.utilities.Styles
-import com.github.vini2003.blade.common.collection.base.HandledWidgetCollection
-import com.github.vini2003.blade.common.collection.base.WidgetCollection
+import vini2003.xyz.blade.common.handler.BaseContainer
+import vini2003.xyz.blade.common.utilities.Networks
+import vini2003.xyz.blade.common.utilities.Positions
+import vini2003.xyz.blade.common.utilities.Styles
+import vini2003.xyz.blade.common.collection.base.HandledWidgetCollection
+import vini2003.xyz.blade.common.collection.base.WidgetCollection
+import vini2003.xyz.blade.common.miscellaneous.*
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.renderer.IRenderTypeBuffer
 import net.minecraft.util.ResourceLocation

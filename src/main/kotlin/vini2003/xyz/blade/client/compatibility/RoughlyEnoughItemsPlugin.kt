@@ -1,8 +1,8 @@
-package com.github.vini2003.blade.client.compatibility
+package vini2003.xyz.blade.client.compatibility
 //
 //import com.github.vini2003.blade.Blade
-//import com.github.vini2003.blade.client.handler.BaseContainerScreen
-//import com.github.vini2003.blade.common.handler.BaseContainer
+//import vini2003.xyz.blade.client.handler.BaseContainerScreen
+//import vini2003.xyz.blade.common.handler.BaseContainer
 //import me.shedaniel.math.Rectangle
 //import me.shedaniel.rei.api.DisplayHelper
 //import me.shedaniel.rei.api.DisplayHelper.DisplayBoundsProvider

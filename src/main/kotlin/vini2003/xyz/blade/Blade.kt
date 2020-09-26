@@ -1,18 +1,19 @@
 package vini2003.xyz.blade
 
-import com.github.vini2003.blade.common.utilities.Networks
-import com.github.vini2003.blade.common.utilities.Resources
-import com.github.vini2003.blade.testing.kotlin.DebugCommands
-import com.github.vini2003.blade.testing.kotlin.DebugContainers
-import com.github.vini2003.blade.testing.kotlin.DebugScreens
+import vini2003.xyz.blade.common.utilities.Networks
+import vini2003.xyz.blade.testing.kotlin.DebugContainers
+import vini2003.xyz.blade.testing.kotlin.DebugScreens
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.api.distmarker.Dist
-import net.minecraftforge.fml.DistExecutor
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.loading.FMLEnvironment
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import thedarkcolour.kotlinforforge.forge.MOD_BUS
+import thedarkcolour.kotlinforforge.forge.runWhenOn
 import vini2003.xyz.blade.common.registry.NetworkRegistry
+import vini2003.xyz.blade.common.utilities.Resources
+import vini2003.xyz.blade.testing.kotlin.DebugCommands
 
 @Mod(Blade.MOD_ID)
 object Blade {
@@ -35,12 +36,9 @@ object Blade {
 
 		if (!FMLEnvironment.production) {
 			DebugContainers.initialize()
-
-			DistExecutor.safeRunWhenOn(Dist.CLIENT) {
-				DistExecutor.SafeRunnable {
-					DebugScreens.initialize()
-				}
-			}
+			MOD_BUS.addListener(DebugCommands::command)
+			MOD_BUS.addListener(Resources::reload)
+			runWhenOn(Dist.CLIENT, DebugScreens::initialize)
 		}
 	}
 }

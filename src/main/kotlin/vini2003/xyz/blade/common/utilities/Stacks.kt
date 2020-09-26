@@ -1,4 +1,4 @@
-package com.github.vini2003.blade.common.utilities
+package vini2003.xyz.blade.common.utilities
 
 import net.minecraft.item.ItemStack
 import kotlin.math.max

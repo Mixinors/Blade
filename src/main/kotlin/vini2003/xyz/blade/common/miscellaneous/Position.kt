@@ -1,4 +1,4 @@
-package com.github.vini2003.blade.common.miscellaneous
+package vini2003.xyz.blade.common.miscellaneous
 
 interface Position : PositionHolder {
 	fun offset(x: Number, y: Number): Position = of(this, x.toFloat(), y.toFloat())

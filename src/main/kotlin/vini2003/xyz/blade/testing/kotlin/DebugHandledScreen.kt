@@ -1,7 +1,7 @@
-package com.github.vini2003.blade.testing.kotlin
+package vini2003.xyz.blade.testing.kotlin
 
-import com.github.vini2003.blade.client.handler.BaseContainerScreen
-import com.github.vini2003.blade.common.handler.BaseContainer
+import vini2003.xyz.blade.client.handler.BaseContainerScreen
+import vini2003.xyz.blade.common.handler.BaseContainer
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.util.text.ITextComponent
 

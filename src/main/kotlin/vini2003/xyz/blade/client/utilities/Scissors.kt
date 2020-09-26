@@ -1,6 +1,6 @@
-package com.github.vini2003.blade.client.utilities
+package vini2003.xyz.blade.client.utilities
 
-import com.github.vini2003.blade.common.widget.base.AbstractWidget
+import vini2003.xyz.blade.common.widget.base.AbstractWidget
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.IRenderTypeBuffer
 import net.minecraft.client.renderer.IRenderTypeBuffer.Impl

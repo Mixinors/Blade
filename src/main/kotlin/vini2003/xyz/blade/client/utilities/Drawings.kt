@@ -1,6 +1,6 @@
-package com.github.vini2003.blade.client.utilities
+package vini2003.xyz.blade.client.utilities
 
-import com.github.vini2003.blade.common.miscellaneous.Color
+import vini2003.xyz.blade.common.miscellaneous.Color
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.gui.FontRenderer
 import net.minecraft.client.renderer.IRenderTypeBuffer

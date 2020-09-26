@@ -1,4 +1,4 @@
-package com.github.vini2003.blade.testing.kotlin
+package vini2003.xyz.blade.testing.kotlin
 
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandSource
@@ -10,15 +10,10 @@ import net.minecraft.inventory.container.INamedContainerProvider
 import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.StringTextComponent
 import net.minecraftforge.event.RegisterCommandsEvent
-import net.minecraftforge.eventbus.api.SubscribeEvent
-import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.loading.FMLEnvironment
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 class DebugCommands {
 	companion object {
-		@JvmStatic
-		@SubscribeEvent
 		fun command(event: RegisterCommandsEvent) {
 			if (FMLEnvironment.production) return
 			val debugNode = Commands.literal("debug_blade")

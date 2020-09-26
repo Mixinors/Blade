@@ -1,8 +1,7 @@
-package com.github.vini2003.blade.testing.kotlin
+package vini2003.xyz.blade.testing.kotlin
 
 import net.minecraft.inventory.container.ContainerType
 import net.minecraftforge.common.extensions.IForgeContainerType
-import net.minecraftforge.fml.network.IContainerFactory
 
 class DebugContainers {
 	companion object {

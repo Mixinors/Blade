@@ -1,10 +1,10 @@
-package com.github.vini2003.blade.common.widget.base
+package vini2003.xyz.blade.common.widget.base
 
-import com.github.vini2003.blade.client.data.PartitionedTexture
-import com.github.vini2003.blade.client.utilities.Instances
-import com.github.vini2003.blade.common.handler.BaseContainer
-import com.github.vini2003.blade.common.collection.base.HandledWidgetCollection
-import com.github.vini2003.blade.common.collection.base.WidgetCollection
+import vini2003.xyz.blade.client.data.PartitionedTexture
+import vini2003.xyz.blade.client.utilities.Instances
+import vini2003.xyz.blade.common.handler.BaseContainer
+import vini2003.xyz.blade.common.collection.base.HandledWidgetCollection
+import vini2003.xyz.blade.common.collection.base.WidgetCollection
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.gui.screen.inventory.ContainerScreen
 import net.minecraft.client.renderer.IRenderTypeBuffer
@@ -21,7 +21,7 @@ open class SlotWidget(
 	var slotProvider: (IInventory, Int, Int, Int) -> Slot
 ) : AbstractWidget() {
 	constructor(slot: Int, inventory: IInventory) : this(slot, inventory, { inv, id, x, y -> Slot(inv, id, x, y) })
-	
+
 	var backendSlot: Slot? = null
 
 	var texture = PartitionedTexture(Blade.resourceLocation("textures/widget/slot.png"), 18F, 18F, 0.05555555555555555556F, 0.05555555555555555556F, 0.05555555555555555556F, 0.05555555555555555556F)

@@ -1,12 +1,11 @@
-package com.github.vini2003.blade.common.utilities
+package vini2003.xyz.blade.common.utilities
 
-import com.github.vini2003.blade.common.miscellaneous.Position
-import com.github.vini2003.blade.common.miscellaneous.PositionHolder
-import com.github.vini2003.blade.common.miscellaneous.Size
-import com.github.vini2003.blade.common.collection.base.WidgetCollection
-import com.github.vini2003.blade.common.widget.base.SlotWidget
+import vini2003.xyz.blade.common.miscellaneous.Position
+import vini2003.xyz.blade.common.miscellaneous.PositionHolder
+import vini2003.xyz.blade.common.miscellaneous.Size
+import vini2003.xyz.blade.common.collection.base.WidgetCollection
+import vini2003.xyz.blade.common.widget.base.SlotWidget
 import net.minecraft.inventory.IInventory
-import net.minecraft.inventory.Inventory
 import java.util.*
 
 class Slots {

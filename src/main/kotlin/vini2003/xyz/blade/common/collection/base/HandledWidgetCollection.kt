@@ -1,6 +1,6 @@
-package com.github.vini2003.blade.common.collection.base
+package vini2003.xyz.blade.common.collection.base
 
-import com.github.vini2003.blade.common.handler.BaseContainer
+import vini2003.xyz.blade.common.handler.BaseContainer
 
 interface HandledWidgetCollection : WidgetCollection {
 	val handler: BaseContainer

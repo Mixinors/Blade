@@ -1,10 +1,10 @@
-package com.github.vini2003.blade.common.handler
+package vini2003.xyz.blade.common.handler
 
-import com.github.vini2003.blade.client.utilities.Instances
-import com.github.vini2003.blade.common.utilities.Stacks
-import com.github.vini2003.blade.common.utilities.Networks
-import com.github.vini2003.blade.common.collection.base.HandledWidgetCollection
-import com.github.vini2003.blade.common.widget.base.AbstractWidget
+import vini2003.xyz.blade.client.utilities.Instances
+import vini2003.xyz.blade.common.utilities.Stacks
+import vini2003.xyz.blade.common.utilities.Networks
+import vini2003.xyz.blade.common.collection.base.HandledWidgetCollection
+import vini2003.xyz.blade.common.widget.base.AbstractWidget
 import me.shedaniel.math.Rectangle
 import net.minecraft.client.gui.screen.inventory.ContainerScreen
 import net.minecraft.entity.player.PlayerEntity
@@ -19,7 +19,8 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 
-abstract class BaseContainer(type: ContainerType<out Container>, syncId: Int, val player: PlayerEntity) : Container(type, syncId), HandledWidgetCollection {
+abstract class BaseContainer(type: ContainerType<out Container>, syncId: Int, val player: PlayerEntity) : Container(type, syncId),
+	HandledWidgetCollection {
 	override val widgets: ArrayList<AbstractWidget> = ArrayList()
 
 	override val handler: BaseContainer
@@ -58,7 +59,7 @@ abstract class BaseContainer(type: ContainerType<out Container>, syncId: Int, va
 			onLayoutChangedDelegate()
 		}
 	}
-	
+
 	@OnlyIn(Dist.CLIENT)
 	fun onLayoutChangedDelegate() {
 		val screen = Instances.client().screen as? ContainerScreen<*> ?: return

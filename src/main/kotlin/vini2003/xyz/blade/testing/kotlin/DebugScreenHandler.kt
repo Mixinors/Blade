@@ -1,6 +1,6 @@
-package com.github.vini2003.blade.testing.kotlin
+package vini2003.xyz.blade.testing.kotlin
 
-import com.github.vini2003.blade.common.handler.BaseContainer
+import vini2003.xyz.blade.common.handler.BaseContainer
 import net.minecraft.entity.player.PlayerEntity
 
 class DebugContainer(syncId: Int, player: PlayerEntity) : BaseContainer(DebugContainers.DEBUG_HANDLER, syncId, player) {

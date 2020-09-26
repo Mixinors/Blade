@@ -1,15 +1,15 @@
-package com.github.vini2003.blade.common.widget.base
+package vini2003.xyz.blade.common.widget.base
 
-import com.github.vini2003.blade.client.data.PartitionedTexture
-import com.github.vini2003.blade.client.utilities.Drawings
-import com.github.vini2003.blade.client.utilities.Layers
-import com.github.vini2003.blade.common.miscellaneous.Size
-import com.github.vini2003.blade.common.miscellaneous.Rectangle
-import com.github.vini2003.blade.common.collection.TabWidgetCollection
-import com.github.vini2003.blade.common.utilities.Networks
-import com.github.vini2003.blade.common.utilities.Positions
-import com.github.vini2003.blade.common.collection.base.HandledWidgetCollection
-import com.github.vini2003.blade.common.collection.base.WidgetCollection
+import vini2003.xyz.blade.client.data.PartitionedTexture
+import vini2003.xyz.blade.client.utilities.Drawings
+import vini2003.xyz.blade.client.utilities.Layers
+import vini2003.xyz.blade.common.miscellaneous.Size
+import vini2003.xyz.blade.common.miscellaneous.Rectangle
+import vini2003.xyz.blade.common.collection.TabWidgetCollection
+import vini2003.xyz.blade.common.utilities.Networks
+import vini2003.xyz.blade.common.utilities.Positions
+import vini2003.xyz.blade.common.collection.base.HandledWidgetCollection
+import vini2003.xyz.blade.common.collection.base.WidgetCollection
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.renderer.IRenderTypeBuffer
 import net.minecraft.item.Item

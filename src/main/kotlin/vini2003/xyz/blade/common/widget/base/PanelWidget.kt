@@ -1,7 +1,7 @@
-package com.github.vini2003.blade.common.widget.base
+package vini2003.xyz.blade.common.widget.base
 
-import com.github.vini2003.blade.client.data.PartitionedTexture
-import com.github.vini2003.blade.common.collection.base.WidgetCollection
+import vini2003.xyz.blade.client.data.PartitionedTexture
+import vini2003.xyz.blade.common.collection.base.WidgetCollection
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.renderer.IRenderTypeBuffer
 import vini2003.xyz.blade.Blade
