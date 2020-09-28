@@ -63,7 +63,7 @@ object NetworkRegistry {
     }
 
     @OnlyIn(Dist.CLIENT)
-    fun sendToServer(id: ResourceLocation?, buffer: PacketBuffer?) {
+    fun sendToServer(id: ResourceLocation, buffer: PacketBuffer) {
         val connection = Minecraft.getInstance().connection
 
         if (connection != null) {
@@ -81,7 +81,7 @@ object NetworkRegistry {
         }
     }
 
-    fun sendToClient(id: ResourceLocation?, target: PacketTarget, buffer: PacketBuffer?) {
+    fun sendToClient(id: ResourceLocation, target: PacketTarget, buffer: PacketBuffer) {
         val packetBuffer = PacketBuffer(Unpooled.buffer())
 
         packetBuffer.writeResourceLocation(id)
@@ -92,7 +92,7 @@ object NetworkRegistry {
         )
     }
 
-    fun sendToPlayer(player: ServerPlayerEntity?, id: ResourceLocation?, buffer: PacketBuffer?) {
+    fun sendToPlayer(player: ServerPlayerEntity, id: ResourceLocation, buffer: PacketBuffer) {
         sendToClient(id, PacketDistributor.PLAYER.with { player }, buffer)
     }
 

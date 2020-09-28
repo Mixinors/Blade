@@ -1,19 +1,19 @@
 package vini2003.xyz.blade
 
-import vini2003.xyz.blade.common.utilities.Networks
-import vini2003.xyz.blade.testing.kotlin.DebugContainers
-import vini2003.xyz.blade.testing.kotlin.DebugScreens
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.loading.FMLEnvironment
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import thedarkcolour.kotlinforforge.forge.MOD_BUS
+import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.forge.runWhenOn
 import vini2003.xyz.blade.common.registry.NetworkRegistry
+import vini2003.xyz.blade.common.utilities.Networks
 import vini2003.xyz.blade.common.utilities.Resources
 import vini2003.xyz.blade.testing.kotlin.DebugCommands
+import vini2003.xyz.blade.testing.kotlin.DebugContainers
+import vini2003.xyz.blade.testing.kotlin.DebugScreens
 
 @Mod(Blade.MOD_ID)
 object Blade {
@@ -36,8 +36,8 @@ object Blade {
 
 		if (!FMLEnvironment.production) {
 			DebugContainers.initialize()
-			MOD_BUS.addListener(DebugCommands::command)
-			MOD_BUS.addListener(Resources::reload)
+			FORGE_BUS.addListener(DebugCommands::command)
+			FORGE_BUS.addListener(Resources::reload)
 			runWhenOn(Dist.CLIENT, DebugScreens::initialize)
 		}
 	}

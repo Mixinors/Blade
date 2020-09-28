@@ -28,9 +28,9 @@ class DebugCommands {
 							}
 						})
 						1
-					}.build()
+					}
 
-			event.dispatcher.root.addChild(debugNode)
+            event.dispatcher.register(debugNode)
 		}
 	}
 }

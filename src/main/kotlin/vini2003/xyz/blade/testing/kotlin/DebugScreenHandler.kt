@@ -3,7 +3,7 @@ package vini2003.xyz.blade.testing.kotlin
 import vini2003.xyz.blade.common.handler.BaseContainer
 import net.minecraft.entity.player.PlayerEntity
 
-class DebugContainer(syncId: Int, player: PlayerEntity) : BaseContainer(DebugContainers.DEBUG_HANDLER, syncId, player) {
+class DebugContainer(syncId: Int, player: PlayerEntity) : BaseContainer(DebugContainers.DEBUG_HANDLER.get(), syncId, player) {
 	override fun initialize(width: Int, height: Int) {
 		panel {
 			val panel = this

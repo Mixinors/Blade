@@ -1,14 +1,14 @@
 package vini2003.xyz.blade.client.handler
 
-import vini2003.xyz.blade.client.utilities.Instances
-import vini2003.xyz.blade.common.handler.BaseContainer
-import vini2003.xyz.blade.common.utilities.Networks
-import vini2003.xyz.blade.common.utilities.Positions
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.gui.screen.inventory.ContainerScreen
 import net.minecraft.client.renderer.IRenderTypeBuffer
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.util.text.ITextComponent
+import vini2003.xyz.blade.client.utilities.Instances
+import vini2003.xyz.blade.common.handler.BaseContainer
+import vini2003.xyz.blade.common.utilities.Networks
+import vini2003.xyz.blade.common.utilities.Positions
 
 open class BaseContainerScreen<T : BaseContainer>(val handler: BaseContainer, inventory: PlayerInventory, title: ITextComponent) : ContainerScreen<T>(handler as T, inventory, title) {
 	override fun init() {
@@ -119,6 +119,5 @@ open class BaseContainerScreen<T : BaseContainer>(val handler: BaseContainer, in
 	}
 
 	override fun renderBg(p_230450_1_: MatrixStack, p_230450_2_: Float, p_230450_3_: Int, p_230450_4_: Int) {
-		TODO("Not yet implemented")
 	}
 }
